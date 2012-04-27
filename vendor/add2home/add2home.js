@@ -160,7 +160,11 @@ var addToHome = (function (w) {
 
 		// Add the close action
 		closeButton = balloon.querySelector('.addToHomeClose');
-		if ( closeButton ) closeButton.addEventListener('click', clicked, false);
+		/*
+		closeButton = balloon.querySelector('.addToHomeClose');
+		if ( closeButton ) closeButton.addEventListener('touchstart', clicked, false);
+		*/
+		balloon.addEventListener('touchstart', clicked, true);
 
 		setTimeout(show, options.startDelay);
 	}
@@ -249,7 +253,8 @@ var addToHome = (function (w) {
 			duration = '0',
 			closeButton = balloon.querySelector('.addToHomeClose');
 
-		if ( closeButton ) closeButton.removeEventListener('click', close, false);
+		//if ( closeButton ) closeButton.removeEventListener('touchstart', close, false);
+		balloon.removeEventListener('touchstart', clicked, true);
 
 		if ( OSVersion < 5 ) {
 			posY = isIPad ? w.scrollY - startY : w.scrollY + w.innerHeight - startY;
@@ -291,13 +296,15 @@ var addToHome = (function (w) {
 	}
 
 
-	function clicked () {
+	function clicked (event) {
 		w.sessionStorage.setItem('addToHomeSession', '1');
 		isSessionActive = true;
 		close();
+		event.preventDefault();
 	}
 
 	function transitionEnd () {
+
 		balloon.removeEventListener('webkitTransitionEnd', transitionEnd, false);
 
 		balloon.style.webkitTransitionProperty = '-webkit-transform';
