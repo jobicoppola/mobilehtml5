@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html manifest="/cache.manifest">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Converge</title>
+  <!-- Mobile Settings -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="images/icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
+  <link rel="apple-touch-startup-image" href="images/startup.png" />
+  <!-- Styles -->
+  <link rel='stylesheet' href='vendor/uikit/stylesheets/iphone.css' />
+  <link rel='stylesheet' href='styles/styles.css' />
+  <link rel="stylesheet" href="vendor/add2home/add2home.css" />
+</head>
+<body>
+
+
+  <!-- Content -->
+  <div id="header">
+    <h1>Mobile HTML5</h1>
+  </div>
+
+  <h1>Handle events yourself</h1>
+  <p>
+    <button id='badbutton'>Normal 'click' button</button>
+    <a id='goodbutton' class='button white'>Custom 'singleTap' button</a>
+  </p>
+
+  <h1>Use alert() and friends</h1>
+  <p>
+    <a id='alertBtn' class='button green'>alert()</a>
+    <a id='confirmBtn' class='button black'>confirm()</a>
+    <a id='promptBtn' class='button white'>prompt()</a>
+  </p>
+
+  <h1>Animate with CSS3 instead of JS</h1>
+  <div id='animBox'>
+    <div id='animTarget1' class='animTarget'></div>
+    <div id='animTarget2' class='animTarget'></div>
+  </div>
+  <p>
+    <a id='jsAnimBtn' class='button red'>Try JavaScript</a>
+    <a id='cssAnimBtn' class='button green'>Try CSS</a>
+  </p>
+
+  <h1>Embrace geolocation</h1>
+  <ul class='form nomargin'>
+    <li><input type='text' enabled='false' id='geoStatus' /></li>
+  </ul>
+  <p>
+    <a id='geoBtn' class='button black'>Where am I?</a>
+  </p>
+
+  <h1>Link to phones and maps</h1>
+  <ul class='field'>
+    <li>
+      <h3>Call Hunter</h3>
+      <a href='tel:17042530040'>704 253 0040</a>
+    </li>
+    <li>
+      <h3>Text Hunter</h3>
+      <a href='sms:17042530040'>704 253 0040</a>
+    </li>
+    <li>
+      <h3>Map converge</h3>
+      <a href='http://maps.google.com/maps?q=1301+Gervais+Street,+Columbia,+SC'>1301 Gervais St, Columbia, SC</a>
+    </li>
+  </ul>
+
+  <h1>Use specific forms</h1>
+  <form>
+    <ul class='form'>
+      <li><input type='email' placeholder='email' /></li>
+      <li><input type='tel' placeholder='phone number' /></li>
+      <li><input type='url' placeholder='url' /></li>
+      <li><input type='date' value='2012-04-27' /></li>
+      <li><input type='text' pattern='[0-9]*'/ placeholder='zip' /></li>
+      <li><input type='number' value='10' /></li>
+      <li><input type='range' min='1' max='10' value='5' /></li>
+      <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
+      <li><input type='text' placeholder='will leave you alone' autocorrect='off' autocapitalize='off' /></li>
+    </ul>
+  </form>
+
+  <!-- Scripts -->
+  <script src='vendor/zeptojs/zepto.js'></script>
+  <script type="text/javascript" charset="utf-8">
+    var addToHomeConfig = {
+      returningVisitor: false,
+      startDelay: 0,
+      expire: 0,
+      touchIcon: true,
+      lifespan: 2000
+    };
+    $(document).ready(function() {
+      window.onload = function() {
+        setTimeout(function() {
+          window.scrollTo(0, 1);
+        }, 100);
+      }
+      $('#badbutton').on('click', function(event) {
+        alert('Click!');
+        event.preventDefault();
+      });
+      $('#goodbutton').on('singleTap', function(event) {
+        alert('Tap!');
+        event.preventDefault();
+      });
+      $('#alertBtn').on('singleTap', function(event) {
+        alert('Great job!');
+        event.preventDefault();
+      });
+      $('#confirmBtn').on('singleTap', function(event) {
+        confirm('Best app ever?');
+        event.preventDefault();
+      });
+      $('#promptBtn').on('singleTap', function(event) {
+        prompt('What is your favorite color?');
+        event.preventDefault();
+      });
+      $('#jsAnimBtn').on('singleTap', function(event) {
+        var target = $('#animTarget1');
+        var x = 0;
+        function moveRight() {
+          x += 1;
+          target.css('left', x + '%');
+          if (x < 100) {
+            setTimeout(moveRight, 20);
+          }
+        }
+        moveRight();
+        event.preventDefault();
+      });
+      $('#cssAnimBtn').on('singleTap', function(event) {
+        if ($('#animTarget2').hasClass('complete')) {
+          return $('#animTarget2').removeClass('complete');
+        }
+        return $('#animTarget2').addClass('complete');
+        event.preventDefault();
+      });
+      $('#geoBtn').on('singleTap', function(event) {
+        var geo = navigator.geolocation;
+        if (geo) {
+          var location = geo.getCurrentPosition(function success(pos) {
+            $('#geoStatus').val('lat: ' + pos.coords.latitude + ', long: ' + pos.coords.longitude);
+          }, function error() {
+            $('#geoStatus').val('error getting position');
+          });
+        }
+        else {
+          $('#geoStatus').val("This device doesn't support geolocation.");
+        }
+        event.preventDefault();
+      });
+    });
+  </script>
+  <script src='vendor/add2home/add2home.js'></script>
+</body>
+</html>
+
+
