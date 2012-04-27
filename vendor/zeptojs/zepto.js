@@ -1319,6 +1319,13 @@ window.Zepto = Zepto
     }).bind('touchend', function(e){
        cancelLongTap()
 
+       $(window).bind('scroll', function() {
+        if (touchTimeout) clearTimeout(touchTimeout);
+        if (longTapTimeout) clearTimeout(longTapTimeout);
+        longTapTimeout = touchTimeout = null;
+        touch = {};
+       });
+
       // double tap (tapped twice within 250ms)
       if (touch.isDoubleTap) {
         touch.el.trigger('doubleTap')
