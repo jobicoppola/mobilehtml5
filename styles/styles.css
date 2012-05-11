@@ -79,3 +79,14 @@ ul li input[type='range'] {
 .button:active {
   color: #999;
 }
+
+.bestRad {
+  font-weight: normal;
+}
+.bestRad:active {
+  background: #eee;
+}
+.bestRad.checked {
+  background: #0277ef;
+  color: #fff;
+}

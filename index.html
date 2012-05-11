@@ -43,6 +43,24 @@
     <a id='goodbutton' class='button white'>Custom 'singleTap' button</a>
   </p>
 
+  <h1>Ignore standards and accessibility</h1>
+  <p>
+    <input name='badRad' id='rad1' type='radio' />
+    <label for='rad1'>first</label>
+    <input name='badRad' id='rad2' type='radio' />
+    <label for='rad2'>second</label>
+  </p>
+  <p>
+    <input name='betterRad' id='rad3' type='radio' />
+    <label for='rad3' onclick=''>third</label>
+    <input name='betterRad' id='rad4' type='radio' />
+    <label for='rad4' onclick=''>fourth</label>
+  </p>
+  <ul>
+    <li class='bestRad checked' id='rad5'>fifth</li>
+    <li class='bestRad' id='rad6'>sixth</li>
+  </ul>
+
   <h1>Use alert() and friends</h1>
   <p>
     <a id='alertBtn' class='button green'>alert()</a>
@@ -91,7 +109,7 @@
       <li><input type='tel' placeholder='phone number' /></li>
       <li><input type='url' placeholder='url' /></li>
       <li><input type='date' value='2012-04-27' /></li>
-      <li><input type='text' pattern='[0-9]*'/ placeholder='zip' /></li>
+      <li><input type='text' pattern='[0-9]*' placeholder='zip' /></li>
       <li><input type='number' value='10' /></li>
       <li><input type='range' min='1' max='10' value='5' /></li>
       <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
@@ -165,6 +183,10 @@
           $('#geoStatus').val("This device doesn't support geolocation.");
         }
         event.preventDefault();
+      });
+      $('.bestRad').on('singleTap', function(event, el) {
+        $('.bestRad').removeClass('checked');
+        $(event.target).addClass('checked');
       });
     });
   </script>
