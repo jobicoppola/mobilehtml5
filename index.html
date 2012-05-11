@@ -77,11 +77,15 @@
       <li><input type='date' value='2012-04-27' /></li>
       <li><input type='text' pattern='[0-9]*' placeholder='zip' /></li>
       <li><input type='number' value='10' /></li>
-      <li><input type='range' min='1' max='10' value='5' /></li>
       <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
       <li><input type='text' placeholder='will leave you alone' autocorrect='off' autocapitalize='off' /></li>
     </ul>
   </form>
+  <h1>(David Calhoun / css)</h1>
+  <div class="iphone-slider">
+    <input type="range" value="0"></input>
+    <span>type="range"</span>
+  </div>
 
   <h1>Animate with CSS3 instead of JS</h1>
   <div id='animBox'>
@@ -120,6 +124,7 @@
   <!-- Scripts -->
   <script src='vendor/zeptojs/zepto.js'></script>
   <script type="text/javascript" charset="utf-8">
+    window.scrollTo(0, 1);
     var addToHomeConfig = {
       returningVisitor: false,
       startDelay: 1000,
@@ -129,7 +134,6 @@
     };
     $(document).ready(function() {
       // Hide the URL bar
-      window.scrollTo(0, 1);
       $('#badbutton').on('click', function(event) {
         alert('Click!');
         event.preventDefault();

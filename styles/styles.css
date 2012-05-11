@@ -84,9 +84,102 @@ ul li input[type='range'] {
   font-weight: normal;
 }
 .bestRad:active {
-  background: #eee;
+  background: #ddd;
 }
 .bestRad.checked {
   background: #0277ef;
   color: #fff;
+}
+
+.iphone-slider {
+    width: 280px;
+    height: 46px;
+
+    /* set the wrapper as the anchor element for positioning */
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.iphone-slider input {
+    -webkit-appearance: none;
+    width: 100%;
+    background: #ddd;
+    padding: 3px;
+    border: 1px solid #525252;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #555555),
+        color-stop(1, #777777)
+    );
+}
+
+.iphone-slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+    /* position the button on top of everything */
+    z-index: 100;
+    position: relative;
+
+    width: 68px;
+    height: 44px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+
+    /* arrow and button gradient */
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #fefefe),
+        color-stop(0.49, #dddddd),
+        color-stop(0.51, #d1d1d1),
+        color-stop(1, #a1a1a1)
+    );
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.iphone-slider span {
+    /* position the text just under the button in the stacking order */
+    position: absolute;
+    z-index: 99;
+    top: 30%;
+    left: 37%;
+
+    font-family: "Helvetica Neue", Helvetica, sans;
+    font-size: 24px;
+    color: white;
+    cursor: default;
+    -webkit-user-select: none;
+
+    /* semitransparent gradient mask to animate over the text */
+    -webkit-mask-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0, rgba(0,0,0,0.3)),
+        color-stop(0.45, rgba(0,0,0,0.3)),
+        color-stop(0.5, rgba(0,0,0,1)),
+        color-stop(0.55, rgba(0,0,0,0.3)),
+        color-stop(1, rgba(0,0,0,0.3))
+    );
+    -webkit-mask-size: 1000px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation: text-spotlight 4s infinite;
+}
+
+/* animate the webkit-mark over the text */
+@-webkit-keyframes text-spotlight {
+  0% {
+    -webkit-mask-position: -800px;
+  }
+
+  100% {
+    -webkit-mask-position: 0px;
+  }
 }
