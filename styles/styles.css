@@ -61,7 +61,7 @@ ul li input[type='range'] {
 
 #animTarget2 {
   background: #0f0;
-  -webkit-transition: all 2s ease;
+  -webkit-transition: all 1.5s ease;
   bottom: 0;
 }
 

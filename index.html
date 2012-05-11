@@ -37,7 +37,7 @@
     <h1>Mobile HTML5</h1>
   </div>
 
-  <h1>Handle events yourself</h1>
+  <h1>Do touch yourself</h1>
   <p>
     <button id='badbutton'>Normal 'click' button</button>
     <a id='goodbutton' class='button white'>Custom 'singleTap' button</a>
@@ -67,6 +67,21 @@
     <a id='confirmBtn' class='button black'>confirm()</a>
     <a id='promptBtn' class='button white'>prompt()</a>
   </p>
+
+  <h1>Use specific forms</h1>
+  <form>
+    <ul class='form'>
+      <li><input type='email' placeholder='email' /></li>
+      <li><input type='tel' placeholder='phone number' /></li>
+      <li><input type='url' placeholder='url' /></li>
+      <li><input type='date' value='2012-04-27' /></li>
+      <li><input type='text' pattern='[0-9]*' placeholder='zip' /></li>
+      <li><input type='number' value='10' /></li>
+      <li><input type='range' min='1' max='10' value='5' /></li>
+      <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
+      <li><input type='text' placeholder='will leave you alone' autocorrect='off' autocapitalize='off' /></li>
+    </ul>
+  </form>
 
   <h1>Animate with CSS3 instead of JS</h1>
   <div id='animBox'>
@@ -101,21 +116,6 @@
       <a href='http://maps.google.com/maps?q=1301+Gervais+Street,+Columbia,+SC'>1301 Gervais St, Columbia, SC</a>
     </li>
   </ul>
-
-  <h1>Use specific forms</h1>
-  <form>
-    <ul class='form'>
-      <li><input type='email' placeholder='email' /></li>
-      <li><input type='tel' placeholder='phone number' /></li>
-      <li><input type='url' placeholder='url' /></li>
-      <li><input type='date' value='2012-04-27' /></li>
-      <li><input type='text' pattern='[0-9]*' placeholder='zip' /></li>
-      <li><input type='number' value='10' /></li>
-      <li><input type='range' min='1' max='10' value='5' /></li>
-      <li><input type='text' placeholder='will autocorrect and autocapitalize' autocorrect='on' autocapitalize='on' /></li>
-      <li><input type='text' placeholder='will leave you alone' autocorrect='off' autocapitalize='off' /></li>
-    </ul>
-  </form>
 
   <!-- Scripts -->
   <script src='vendor/zeptojs/zepto.js'></script>
@@ -154,7 +154,7 @@
         var target = $('#animTarget1');
         var x = 0;
         function moveRight() {
-          x += 1;
+          x += 2;
           target.css('left', x + '%');
           if (x < 100) {
             setTimeout(moveRight, 20);
@@ -164,10 +164,7 @@
         event.preventDefault();
       });
       $('#cssAnimBtn').on('singleTap', function(event) {
-        if ($('#animTarget2').hasClass('complete')) {
-          return $('#animTarget2').removeClass('complete');
-        }
-        return $('#animTarget2').addClass('complete');
+        $('#animTarget2').toggleClass('complete');
         event.preventDefault();
       });
       $('#geoBtn').on('singleTap', function(event) {
